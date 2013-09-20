@@ -11,3 +11,17 @@
 *.lai
 *.la
 *.a
+
+# Usless crap
+*.tlog
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.filters
+*.log
+*.idb
+*.obj
+*.pdb
+*.ilk
