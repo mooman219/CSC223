@@ -21,6 +21,7 @@ void alternate() {
     double totalInterestPaid;
     double tempInterest;
     double tempPrinciple;
+    double annulizedInterest;
 
     // Get the loan
     cout << "Loan Amount: $";
@@ -67,8 +68,11 @@ void alternate() {
         userLoanAmount = (userLoanAmount - userMonthlyPayment) + tempInterest;
     }
 
+    annulizedInterest = totalInterestPaid / (totalMonths / 12.0);
+
     cout << endl << "Number of months to payoff loan: " << totalMonths << endl;
     cout << "Total interest paid: $" << totalInterestPaid << endl;
+    cout << "Annulized Interest: $" << annulizedInterest << endl;
 
     // Restart code
     cout << "If you would like to coninute, enter the numeber 1: ";
