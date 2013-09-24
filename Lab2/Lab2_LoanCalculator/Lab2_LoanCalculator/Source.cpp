@@ -17,8 +17,8 @@ void alternate() {
     double userYearlyInterestRate;
     double monthlyInterestRate;
     double monthlyMiniumPayment;
-    int totalMonths = 0;
-    double totalInterestPaid = 0;
+    int totalMonths;
+    double totalInterestPaid;
     double tempInterest;
     double tempPrinciple;
 
@@ -28,11 +28,8 @@ void alternate() {
     //
 
     // Get the yearly interest rate
-    cout << "You need a yearly Interest Rate of [0%]" << endl;
-    do {
-        cout << "Yearly Interest Rate: ";
-        cin >> userYearlyInterestRate;
-    } while(userYearlyInterestRate < 0);
+    cout << "Yearly Interest Rate: ";
+    cin >> userYearlyInterestRate;
     //
 
     monthlyInterestRate = userYearlyInterestRate / 12;
@@ -46,12 +43,15 @@ void alternate() {
     } while(userMonthlyPayment < monthlyMiniumPayment);
     //
 
+    // Output what the user submitted
     cout << endl << "Loan Amount: $" << userLoanAmount << endl;
     cout << "Interest Rate: " << userYearlyInterestRate << "%" << endl;
+    //
 
     cout << "Month \t Monthly-Balance \t Monthly-Payment \t Interest \t Principle" << endl;
 
     while(userLoanAmount > 0) {
+        // Calculate interest, principle, and the monthly payment
         totalMonths++;
         tempInterest = userLoanAmount * monthlyInterestRate;
         if(userMonthlyPayment > userLoanAmount + tempInterest) {
@@ -59,8 +59,10 @@ void alternate() {
         }
         tempPrinciple = userMonthlyPayment - tempInterest;
         totalInterestPaid += tempInterest;
+        //
 
-        cout << totalMonths << "  \t " << userLoanAmount << " \t\t " << userMonthlyPayment << " \t\t\t " << tempInterest << " \t " << tempPrinciple << endl;
+        // Display the current month, current loan amount, monthly payment, interest, and the principle
+        cout << totalMonths << "  \t $" << userLoanAmount << " \t\t $" << userMonthlyPayment << " \t\t\t $" << tempInterest << " \t$" << tempPrinciple << endl;
 
         userLoanAmount = (userLoanAmount - userMonthlyPayment) + tempInterest;
     }
@@ -82,8 +84,8 @@ void alternate() {
 
 int main()
 {
-    //alternate();
-    /**/
+    alternate();
+    /**
 	double loanAmount;
 	double monthlyPayment;
 	double yearInterestRate;
@@ -109,7 +111,7 @@ int main()
 	cin >> monthlyPayment;
 	cout << "Please enter the percent interest (ie if 10% enter 10.)";
 	cin >> yearInterestRate;
-	
+
 	if (yearInterestRate < 0)
 	{
 		cout << "Please re-enter the percent interest (ie if 10% enter 10.)";
@@ -121,7 +123,7 @@ int main()
 	cout << "Interest Rate: " << yearInterestRate << "% \n";
 	cout << "Monthly Balance     Monthly Payment     Interest     Principle \n";
 	//*************************************************************************
-	
+
 	//Calculations*************************************************************
 	interestRate = ((yearInterestRate/100)/12);
 
@@ -144,7 +146,7 @@ int main()
 		else
 		{
 			monthlyPayment = monthlyBalance + monthlyInterest;
-			
+
 			monthlyBalance = (monthlyBalance - monthlyPayment + monthlyInterest);
 
 			principle = (monthlyPayment - monthlyInterest);
@@ -166,7 +168,7 @@ int main()
 		<< totalInterest << ".";
 
 
-	
+
 	cout << "\n Would you like to run again?" ;
 	cin >> rerun;
 
