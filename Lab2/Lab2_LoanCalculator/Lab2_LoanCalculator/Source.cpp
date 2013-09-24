@@ -12,20 +12,23 @@
 using namespace std;
 
 void alternate() {
-    double userLoanAmount;
+    double originalLoanAmount;
+    double loanAmount;
     double userMonthlyPayment;
     double userYearlyInterestRate;
     double monthlyInterestRate;
     double monthlyMiniumPayment;
-    int totalMonths;
-    double totalInterestPaid;
+    int totalMonths = 0;
+    double totalInterestPaid = 0;
     double tempInterest;
     double tempPrinciple;
     double annulizedInterest;
+    double percentAnnualInterest;
 
     // Get the loan
     cout << "Loan Amount: $";
-    cin >> userLoanAmount;
+    cin >> loanAmount;
+    originalLoanAmount = loanAmount;
     //
 
     // Get the yearly interest rate
@@ -34,7 +37,7 @@ void alternate() {
     //
 
     monthlyInterestRate = userYearlyInterestRate / 12;
-    monthlyMiniumPayment = userLoanAmount * monthlyInterestRate;
+    monthlyMiniumPayment = loanAmount * monthlyInterestRate;
 
     // Get the monthly payment
     cout << "You need a minimum monthly payment of [" << monthlyMiniumPayment << "$]" << endl;
@@ -45,34 +48,36 @@ void alternate() {
     //
 
     // Output what the user submitted
-    cout << endl << "Loan Amount: $" << userLoanAmount << endl;
+    cout << endl << "Loan Amount: $" << loanAmount << endl;
     cout << "Interest Rate: " << userYearlyInterestRate << "%" << endl;
     //
 
     cout << "Month \t Monthly-Balance \t Monthly-Payment \t Interest \t Principle" << endl;
 
-    while (userLoanAmount > 0) {
+    while (loanAmount > 0) {
         // Calculate interest, principle, and the monthly payment
         totalMonths++;
-        tempInterest = userLoanAmount * monthlyInterestRate;
-        if (userMonthlyPayment > userLoanAmount + tempInterest) {
-            userMonthlyPayment = userLoanAmount + tempInterest;
+        tempInterest = loanAmount * monthlyInterestRate;
+        if (userMonthlyPayment > loanAmount + tempInterest) {
+            userMonthlyPayment = loanAmount + tempInterest;
         }
         tempPrinciple = userMonthlyPayment - tempInterest;
         totalInterestPaid += tempInterest;
         //
 
         // Display the current month, current loan amount, monthly payment, interest, and the principle
-        cout << totalMonths << "  \t $" << userLoanAmount << " \t\t $" << userMonthlyPayment << " \t\t\t $" << tempInterest << " \t$" << tempPrinciple << endl;
+        cout << totalMonths << "  \t $" << loanAmount << " \t\t $" << userMonthlyPayment << " \t\t\t $" << tempInterest << " \t$" << tempPrinciple << endl;
 
-        userLoanAmount = (userLoanAmount - userMonthlyPayment) + tempInterest;
+        loanAmount = (loanAmount - userMonthlyPayment) + tempInterest;
     }
 
     annulizedInterest = totalInterestPaid / (totalMonths / 12.0);
+    percentAnnualInterest = (annulizedInterest / originalLoanAmount)*100;
 
     cout << endl << "Number of months to payoff loan: " << totalMonths << endl;
     cout << "Total interest paid: $" << totalInterestPaid << endl;
     cout << "Annulized Interest: $" << annulizedInterest << endl;
+    cout << "Percent of the annualized interest from the loan: " << percentAnnualInterest << "%" << endl;
 
     // Restart code
     cout << "If you would like to coninute, enter the numeber 1: ";
