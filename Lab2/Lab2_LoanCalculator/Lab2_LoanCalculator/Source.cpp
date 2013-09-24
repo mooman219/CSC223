@@ -54,6 +54,7 @@ void calculateLoan() {
 
     cout << "Month \t Monthly-Balance \t Monthly-Payment \t Interest \t Principle" << endl;
 
+    // Continue whike there is still loan to be repaid.
     while (loanAmount > 0) {
         // Calculate interest, principle, and the monthly payment
         totalMonths++;
