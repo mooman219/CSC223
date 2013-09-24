@@ -84,87 +84,93 @@ int main()
 {
     //alternate();
     /**/
-    double loanAmount;
-    double monthlyPayment;
-    double yearInterestRate;
-    double interestRate;
-    double monthlyInterest;
-    double monthlyBalance;
-    double currentBalance;
-    double principle;
-    double nomPayoff = 0;
-    double totalInterest =0;
-    double anInterest;
-    double perInterest;
-    bool rerun;
+	double loanAmount;
+	double monthlyPayment;
+	double yearInterestRate;
+	double interestRate;
+	double monthlyInterest;
+	double monthlyBalance;
+	double currentBalance;
+	double principle;
+	double nomPayoff = 0;
+	double totalInterest =0;
+	double anInterest;
+	double perInterest;
+	bool rerun;
 
-    //Input/Output*************************************************************
-    cout << "Please enter your loan amount.";
-    cin >> loanAmount;
-    //Setting up balance also for use in while statement later
-    monthlyBalance = loanAmount;
+	//Input/Output*************************************************************
+	cout << "Please enter your loan amount.";
+	cin >> loanAmount;
+	//Setting up balance also for use in while statement later
+	monthlyBalance = loanAmount;
 
-    cout << "Please enter what you would like your monthly payment to be. \n"
-            << " Make sure it is over the minimum payment.";
-    cin >> monthlyPayment;
-    cout << "Please enter the percent interest (ie if 10% enter 10.)";
-    cin >> yearInterestRate;
+	cout << "Please enter what you would like your monthly payment to be. \n"
+		<< " Make sure it is over the minimum payment.";
+	cin >> monthlyPayment;
+	cout << "Please enter the percent interest (ie if 10% enter 10.)";
+	cin >> yearInterestRate;
+	
+	if (yearInterestRate < 0)
+	{
+		cout << "Please re-enter the percent interest (ie if 10% enter 10.)";
+		cin >> yearInterestRate;
 
-    if (yearInterestRate < 0)
-    {
-        cout << "Please re-enter the percent interest (ie if 10% enter 10.)";
-        cin >> yearInterestRate;
+	}
 
-    }
+	cout << "Loan Amount: " << loanAmount << "\n";
+	cout << "Interest Rate: " << yearInterestRate << "% \n";
+	cout << "Monthly Balance     Monthly Payment     Interest     Principle \n";
+	//*************************************************************************
+	
+	//Calculations*************************************************************
+	interestRate = ((yearInterestRate/100)/12);
 
-    cout << "Loan Amount: " << loanAmount << "\n";
-    cout << "Interest Rate: " << yearInterestRate << "% \n";
-    cout << "Monthly Balance     Monthly Payment     Interest     Principle \n";
-    //*************************************************************************
+	while (monthlyBalance > 0)
+	{
+		nomPayoff++;
+		currentBalance = monthlyBalance;
+		//Finding interest rates 
+		monthlyInterest = (monthlyBalance*interestRate);
+		totalInterest = (totalInterest + monthlyInterest);
 
-    //Calculations*************************************************************
-    interestRate = ((yearInterestRate/100)/12);
+		// if statement for final month where monthly payment might be higher than money owed
+		if (monthlyPayment < monthlyBalance)
+		{
+			monthlyBalance = (monthlyBalance - monthlyPayment + monthlyInterest);
 
-    while (monthlyBalance > 0)
-    {
-        nomPayoff++;
-        currentBalance = monthlyBalance;
-        //Finding interest rates 
-        monthlyInterest = (monthlyBalance*interestRate);
-        totalInterest = (totalInterest + monthlyInterest);
+			principle = (monthlyPayment - monthlyInterest);
+		}
 
-        // if statement for final month where monthly payment might be higher than money owed
-        if (monthlyPayment < monthlyBalance)
-        {
-            monthlyBalance = (monthlyBalance - monthlyPayment + monthlyInterest);
+		else
+		{
+			monthlyPayment = monthlyBalance + monthlyInterest;
+			
+			monthlyBalance = (monthlyBalance - monthlyPayment + monthlyInterest);
 
-            principle = (monthlyPayment - monthlyInterest);
-        }
+			principle = (monthlyPayment - monthlyInterest);
+		}
 
-        else
-        {
-            monthlyPayment = monthlyBalance + monthlyInterest;
+	//Inner Loop Output****************************************************************
 
-            monthlyBalance = (monthlyBalance - monthlyPayment + monthlyInterest);
+		cout << "\n"
+			<< nomPayoff << "     "
+			<< currentBalance << "     "
+			<< monthlyPayment << "     "
+			<< monthlyInterest << "     "
+			<< principle << "     ";
+	//*********************************************************************************	
+	}
+	cout << "\n Number of months to pay off loan: "
+		<< nomPayoff << ".";
+	cout << "\n Total Interest: $" 
+		<< totalInterest << ".";
 
-            principle = (monthlyPayment - monthlyInterest);
-        }
 
-        //Inner Loop Output****************************************************************
+	
+	cout << "\n Would you like to run again?" ;
+	cin >> rerun;
 
-        cout << "\n"
-                << nomPayoff << "     "
-                << currentBalance << "     "
-                << monthlyPayment << "     "
-                << monthlyInterest << "     "
-                << principle << "     ";
-
-    }
-    //*********************************************************************************
-    cout << "\n Would you like to run again?" ;
-    cin >> rerun;
+	return 0;
     /**/
-    return 0;
-
 }
 
