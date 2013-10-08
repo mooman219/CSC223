@@ -1,11 +1,12 @@
 /*
-Ben Staffan & Joe Cumbo
-Due: 9-26-2013
-Program Description:
-
-*/
+ Ben Staffan & Joe Cumbo
+ Due: 9-26-2013
+ Program Description:
+ */
 
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <cmath>
 
 using namespace std;
@@ -25,14 +26,13 @@ void drawScaleLine(int n);
 void statistics(int a[], int stats);
 
 int main() {
-    
-
-
-
-
-
+    string line;
+    ifstream inputFile("rainInput.txt");
+    if (inputFile.is_open()) {
+        while (getline(inputFile, line)) {
+            cout << line << endl;
+        }
+        inputFile.close();
+    }
 }
-
-
-
 
