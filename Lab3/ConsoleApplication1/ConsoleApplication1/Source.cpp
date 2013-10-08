@@ -1,9 +1,10 @@
 /*
  Ben Staffan & Joe Cumbo
- Due: 9-26-2013
+ Due: 10-08-2013
  Program is intended to ask user for loan amount, monthly balance,
  and interest rate. Then uses the information to give total interest, number of months
- it will take to pay off the loan, annualized interest rate, and percentage of the annual interest to the loan.
+ it will take to pay off the loan, annualized interest rate, and percentage of the annual
+ interest to the loan. It differs from the second lab because it uses functions.
  */
 
 #include <iostream>
