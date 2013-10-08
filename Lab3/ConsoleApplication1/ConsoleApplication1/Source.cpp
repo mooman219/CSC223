@@ -1,30 +1,47 @@
 /*
- Ben Staffan & Joe Cumbo
- Due: 10-08-2013
- Program is intended to ask user for loan amount, monthly balance,
- and interest rate. Then uses the information to give total interest, number of months
- it will take to pay off the loan, annualized interest rate, and percentage of the annual
- interest to the loan. It differs from the second lab because it uses functions.
- */
+Ben Staffan & Joe Cumbo
+Due: 10-08-2013
+Program is intended to ask user for loan amount, monthly balance,
+and interest rate. Then uses the information to give total interest, number of months
+it will take to pay off the loan, annualized interest rate, and percentage of the annual
+interest to the loan. It differs from the second lab because it uses functions.
+*/
 
 #include <iostream>
 
 using namespace std;
 
 void intro();
-
+/**
+* Get the loan amout from the user
+*/
 double getLoanAmount();
-
+/**
+* Get the yearly interest rate from the user
+*/
 double getYearlyInterestRate();
-
+/**
+* Get the payment amount from user
+*/
 double getPaymentAmount(double monthlyMinimumPayment);
-
+/**
+* Get the monthly payment from the user. Make sure that the
+* amount they enter is above the minimum monthly payment.
+*/
 double calculateMinimumMonthlyPayment(double yearlyInterestRate, double loanAmount);
-
+/**
+* This function takes a loan amount, monthly interest rate, and a monthly payment.
+* The function then calculates and displays the status of the loan for each month
+* until the loan is paid off.
+*/
 void calculateMonths(double loanAmount, double monthlyInterestRate, double monthlyPayment);
-
+/**
+* Most likely will display results in the display results function
+*/
 void displayResult(int totalMonths, double totalInterestPaid, double annualizedInterest, double percentAnnualInterest);
-
+/**
+* Asks the user if they would like to restart the program.
+*/
 void restart();
 
 int main() {
@@ -33,17 +50,17 @@ int main() {
     double userYearlyInterestRate = getYearlyInterestRate();
 
     /**
-     * Calculate the monthly interest rate from the yearly interest rate.
-     * Also calculate the monthly minimum payment from the monthly interest rate.
-     */
+    * Calculate the monthly interest rate from the yearly interest rate.
+    * Also calculate the monthly minimum payment from the monthly interest rate.
+    */
     double monthlyInterestRate = userYearlyInterestRate / 12;
     double monthlyMinimumPayment = calculateMinimumMonthlyPayment(userYearlyInterestRate, userLoanAmount);
 
     double userPaymentAmount = getPaymentAmount(monthlyMinimumPayment);
 
     /**
-     * Output what the user submitted
-     */
+    * Output what the user submitted
+    */
     cout << endl << "Loan Amount: $" << userLoanAmount << endl;
     cout << "Interest Rate: " << userYearlyInterestRate << "%" << endl;
 
@@ -59,8 +76,8 @@ void intro() {
 }
 
 /**
- * Get the loan amout from the user
- */
+* Get the loan amout from the user
+*/
 double getLoanAmount() {
     cout << "Loan Amount: $";
     double enteredLoanAmount;
@@ -69,8 +86,8 @@ double getLoanAmount() {
 }
 
 /**
- * Get the yearly interest rate from the user
- */
+* Get the yearly interest rate from the user
+*/
 double getYearlyInterestRate() {
     cout << "Yearly Interest Rate: ";
     double enteredYearlyInterestRate;
@@ -79,9 +96,9 @@ double getYearlyInterestRate() {
 }
 
 /**
- * Get the monthly payment from the user. Make sure that the
- * amount they enter is above the minimum monthly payment.
- */
+* Get the monthly payment from the user. Make sure that the
+* amount they enter is above the minimum monthly payment.
+*/
 double getPaymentAmount(double monthlyMinimumPayment) {
     double enteredMonthlyPayment;
     cout << "You need a minimum monthly payment of [" << monthlyMinimumPayment << "$]" << endl;
@@ -93,18 +110,18 @@ double getPaymentAmount(double monthlyMinimumPayment) {
 }
 
 /**
- * This function takes a yearly interest rate and a loan amount and
- * returns the minimum monthly payment required to payoff the loan.
- */
+* This function takes a yearly interest rate and a loan amount and
+* returns the minimum monthly payment required to payoff the loan.
+*/
 double calculateMinimumMonthlyPayment(double yearlyInterestRate, double loanAmount) {
     return loanAmount * (yearlyInterestRate / 12.0);
 }
 
 /**
- * This function takes a loan amount, monthly interest rate, and a monthly payment.
- * The function then calculates and displays the status of the loan for each month
- * until the loan is paid off.
- */
+* This function takes a loan amount, monthly interest rate, and a monthly payment.
+* The function then calculates and displays the status of the loan for each month
+* until the loan is paid off.
+*/
 void calculateMonths(double loanAmount, double monthlyInterestRate, double monthlyPayment) {
     int totalMonths = 0;
     double tempLoanAmount = loanAmount;
@@ -115,12 +132,12 @@ void calculateMonths(double loanAmount, double monthlyInterestRate, double month
     double percentAnnualInterest = 0;
     cout << "Month \t Monthly-Balance \t Monthly-Payment \t Interest \t Principle" << endl;
     /**
-     * Continue while there is still loan to be repaid.
-     */
+    * Continue while there is still loan to be repaid.
+    */
     while (tempLoanAmount > 0) {
         /**
-         * Calculate interest, principle, and the monthly payment
-         */
+        * Calculate interest, principle, and the monthly payment
+        */
         totalMonths++;
         tempInterest = tempLoanAmount * monthlyInterestRate;
         if (monthlyPayment > tempLoanAmount + tempInterest) {
@@ -130,8 +147,8 @@ void calculateMonths(double loanAmount, double monthlyInterestRate, double month
         totalInterestPaid += tempInterest;
 
         /**
-         * Display the current month, current loan amount, monthly payment, interest, and the principle
-         */
+        * Display the current month, current loan amount, monthly payment, interest, and the principle
+        */
         cout << totalMonths << "  \t $" << tempLoanAmount << " \t\t $" << monthlyPayment << " \t\t\t $" << tempInterest << " \t$" << tempPrinciple << endl;
 
         tempLoanAmount = (tempLoanAmount - monthlyPayment) + tempInterest;
@@ -151,8 +168,8 @@ void displayResult(int totalMonths, double totalInterestPaid, double annualizedI
 }
 
 /**
- * Asks the user if they would like to restart the program.
- */
+* Asks the user if they would like to restart the program.
+*/
 void restart() {
     int userAnswer = 0;
     cout << "If you would like to coninute, enter the numeber 1: ";
@@ -160,7 +177,8 @@ void restart() {
     if (userAnswer == 1) {
         cout << endl << "The program is re-running." << endl;
         main();
-    } else {
+    }
+    else {
         cout << endl << "The program will now exit.";
     }
 }
