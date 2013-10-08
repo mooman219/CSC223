@@ -29,11 +29,11 @@ int main() {
     /**
      * Write to output
      */
-    ofstream myfile("rainOutput.txt");
-    if (myfile.is_open()) {
-        myfile << "This is a line.\n";
-        myfile << "This is another line.\n";
-        myfile.close();
+    ofstream outputFile("rainOutput.txt");
+    if (outputFile.is_open()) {
+        outputFile << "This is a line.\n";
+        outputFile << "This is another line.\n";
+        outputFile.close();
     } else {
         cout << "Unable to open file";
     }
