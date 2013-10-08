@@ -24,8 +24,7 @@ void drawScaleLine(int n);
 
 void statistics(int a[], int stats);
 
-int main();
-{
+int main() {
     
 
 
