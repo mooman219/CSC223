@@ -26,6 +26,21 @@ void drawScaleLine(int n);
 void statistics(int a[], int stats);
 
 int main() {
+    /**
+     * Write to output
+     */
+    ofstream myfile("rainOutput.txt");
+    if (myfile.is_open()) {
+        myfile << "This is a line.\n";
+        myfile << "This is another line.\n";
+        myfile.close();
+    } else {
+        cout << "Unable to open file";
+    }
+
+    /**
+     * Read input
+     */
     string line;
     ifstream inputFile("rainInput.txt");
     if (inputFile.is_open()) {
@@ -33,6 +48,8 @@ int main() {
             cout << line << endl;
         }
         inputFile.close();
+    } else {
+        cout << "Unable to open file";
     }
 }
 
