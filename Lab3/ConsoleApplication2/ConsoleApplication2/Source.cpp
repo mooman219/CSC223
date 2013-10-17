@@ -53,29 +53,25 @@ int main()
         x = (x % 2);
         if (x == 1)
         {
-
             monthNumber = i;
             writeMonth(monthNumber);
         }
-
         else
             rainAmount = i;
-            
-    }
-
-    /**
-    * Write to output
-    */
-    ofstream outputFile("rainOutput.txt");
-    if (outputFile.is_open())
-    {
-        outputFile << "This is a line.\n";
-        outputFile << "This is another line.\n";
-        outputFile.close();
-    }
-    else
-    {
-        cout << "Unable to open file";
+        /**
+        * Write to output
+        */
+        ofstream outputFile("rainOutput.txt");
+        if (outputFile.is_open())
+        {
+            outputFile << ;
+            outputFile << ;
+            outputFile.close();
+        }
+        else
+        {
+            cout << "Unable to open file";
+        }
     }
 
 }
