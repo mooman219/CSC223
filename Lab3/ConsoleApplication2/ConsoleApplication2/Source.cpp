@@ -1,145 +1,84 @@
-/*
- Ben Staffan & Joe Cumbo
- Due: 9-26-2013
- Program Description:
- */
-
+#include <memory>
+#include <string>
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <cmath>
-
 using namespace std;
-const int MONTHS_IN_YEAR = 12;
-int monthNumber;
-int rainAmount;
 
-/**
- * input month with an integer and then writes month as a string
- */
-void writeMonth(int monthName);
-
-void getInput(int rainAmount);
-
-void monthlyTotal(int sum );
-
-void drawbar(const int asterisks, string monthName);
-
-void drawScaleLine(int n);
-
-void statistics(int stats);
-
-int main()
-{
-    /**
-    * Read input
-    */
-    int i;
-    int x=1;
-    char *inname = "rainInput.txt";
-    ifstream infile(inname);
-
-    if (!infile) 
-    {
-        cout << "There was a problem opening file "
-            << inname
-            << " for reading."
-            << endl;
-        return 0;
-    }
-    cout << "Opened " << inname << " for reading." << endl;
-    while (infile >> i) 
-    {
-        x = (x % 2);
-        if (x == 1)
-        {
-            monthNumber = i;
-            writeMonth(monthNumber);
-        }
-        else
-            rainAmount = i;
-        /**
-        * Write to output
-        */
-        ofstream outputFile("rainOutput.txt");
-        if (outputFile.is_open())
-        {
-            outputFile << ;
-            outputFile << ;
-            outputFile.close();
-        }
-        else
-        {
-            cout << "Unable to open file";
-        }
-    }
-
-}
-
-void writeMonth(int monthNumber)
-{
-    string monthName;
-
-    switch (monthNumber)
-    {
-    case 1: monthName = "January";
-        break;
-    case 2: monthName = "February";
-        break;
-    case 3: monthName = "March";
-        break;
-    case 4: monthName = "April";
-        break;
-    case 5: monthName = "May";
-        break;
-    case 6: monthName = "June";
-        break;
-    case 7: monthName = "July";
-        break;
-    case 8: monthName = "August";
-        break;
-    case 9: monthName = "September";
-        break;
-    case 10: monthName = "October";
-        break;
-    case 11: monthName = "November";
-        break;
-    case 12: monthName = "December";
-        break;
-   }
-}
-
-void getInput(int rainAmount)
-{
-    
-}
-
-
-void monthlyTotal(int sum, int rainAmount)
-{
-    sum = 0;
-    sum = sum + rainAmount;
-
-}
-
-void drawBar(const int asterisks, string monthName)
-{
-
-
-    for (monthNumber; monthNumber <= MONTHS_IN_YEAR; monthNumber++)
-    {
-        cout << monthName;
-        drawScaleLine(asterisks);
+string getMonth(int monthNumber) {
+    switch (monthNumber) {
+    case 1:
+        return "January  ";
+    case 2:
+        return "February ";
+    case 3:
+        return "March    ";
+    case 4:
+        return "April    ";
+    case 5:
+        return "May      ";
+    case 6:
+        return "June     ";
+    case 7:
+        return "July     ";
+    case 8:
+        return "August   ";
+    case 9:
+        return "September";
+    case 10:
+        return "October  ";
+    case 11:
+        return "November ";
+    case 12:
+        return "December ";
+    default:
+        return "Error    ";
     }
 }
 
-void drawScaleLine(int n)
-{
-    for (int count = 1; count <= n; count++)
-        cout << "*";
-
+string getAsterisks(int inches) {
+    string asterisks;
+    for (int i = 0; i < inches; i++) {
+        asterisks += "*****";
+    }
+    return asterisks;
 }
 
-void statistics(int stats)
-{
+string getFooter() {
+    return "          |______________________________________________\n          | ****1****2****3****4****5****6****7****8****9\n";
+}
+
+void calculateTotalRain(int& total, int monthAmount) {
+    total += monthAmount;
+}
+
+void calculateBestMonth(int& currentBestMonth, int& currentBestTotal, int month, int total) {
+    if (total > currentBestTotal) {
+        currentBestTotal = total;
+        currentBestMonth = month;
+    }
+}
+
+int main() {
+    int month = 0;
+    int monthTotal = 0;
+    int totalRain = 0;
+    int bestMonth = 1;
+    int bestMonthTotal = 0;
+    ifstream inputFile;
+    ofstream outputFile;
+
+    inputFile.open("rainInput.txt");
+    outputFile.open("rainOutput.txt");
+    while (inputFile >> month >> monthTotal) {
+        cout << getMonth(month) << " | " << getAsterisks(monthTotal) << " ~ " << monthTotal << " in" << endl;
+        calculateTotalRain(totalRain, monthTotal);
+        calculateBestMonth(bestMonth, bestMonthTotal, month, monthTotal);
+    }
+
+    cout << getFooter();
+    cout << "The total rain amount was " << totalRain << " inches." << endl;
+    cout << "The best month had " << bestMonthTotal << " inches and was " << getMonth(bestMonth);
+    inputFile.close();
+    outputFile.close();
+    return 0;
 }
