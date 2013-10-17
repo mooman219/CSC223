@@ -11,15 +11,17 @@
 
 using namespace std;
 const int MONTHS_IN_YEAR = 12;
+int monthNumber;
+int rainAmount;
 
 /**
  * input month with an integer and then writes month as a string
  */
-void writeMonth(int monthNumber, string monthName);
+void writeMonth(int monthName);
 
-void getInput(int monthNumber, int rainAmount);
+void getInput(int rainAmount);
 
-void monthlyTotal(int sum, int rainAmount);
+void monthlyTotal(int sum );
 
 void drawbar(const int asterisks, string monthName);
 
@@ -32,21 +34,35 @@ int main()
     /**
     * Read input
     */
-    string line;
-    ifstream inputFile("rainInput.txt");
-    if (inputFile.is_open())
-    {
-        while (getline(inputFile, line))
-        {
-            cout << line << endl;
+    int i;
+    int x=1;
+    char *inname = "rainInput.txt";
+    ifstream infile(inname);
 
-        }
-        inputFile.close();
-    }
-    else
+    if (!infile) 
     {
-        cout << "Unable to open file";
+        cout << "There was a problem opening file "
+            << inname
+            << " for reading."
+            << endl;
+        return 0;
     }
+    cout << "Opened " << inname << " for reading." << endl;
+    while (infile >> i) 
+    {
+        x = (x % 2);
+        if (x == 1)
+        {
+
+            monthNumber = i;
+            writeMonth(monthNumber);
+        }
+
+        else
+            rainAmount = i;
+            
+    }
+
     /**
     * Write to output
     */
@@ -61,10 +77,13 @@ int main()
     {
         cout << "Unable to open file";
     }
+
 }
 
-void writeMonth(int monthNumber, string monthName)
+void writeMonth(int monthNumber)
 {
+    string monthName;
+
     switch (monthNumber)
     {
     case 1: monthName = "January";
@@ -94,7 +113,7 @@ void writeMonth(int monthNumber, string monthName)
    }
 }
 
-void getInput(int monthNumber, int rainAmount)
+void getInput(int rainAmount)
 {
     
 }
@@ -107,7 +126,7 @@ void monthlyTotal(int sum, int rainAmount)
 
 }
 
-void drawBar(const int asterisks, string monthName, int monthNumber)
+void drawBar(const int asterisks, string monthName)
 {
 
 
