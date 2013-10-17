@@ -4,6 +4,9 @@
 #include <fstream>
 using namespace std;
 
+/**
+ * This method takes in a month number and returns the name of that month.
+ */
 string getMonth(int monthNumber) {
     switch (monthNumber) {
     case 1:
@@ -35,6 +38,10 @@ string getMonth(int monthNumber) {
     }
 }
 
+/**
+ * This menthod takes in the number of inches and returns a string with 4 asterisks for
+ * each inch.
+ */
 string getAsterisks(int inches) {
     string asterisks;
     for (int i = 0; i < inches; i++) {
@@ -43,14 +50,24 @@ string getAsterisks(int inches) {
     return asterisks;
 }
 
+/**
+ * This method returns the footer for the graph. The footer includes the scale.
+ */
 string getFooter() {
     return "          |______________________________________________\n          | ****1****2****3****4****5****6****7****8****9\n";
 }
 
+/**
+ * This method takes a pointer for the total rainfall so far and adds the monthAmount to it.
+ */
 void calculateTotalRain(int& total, int monthAmount) {
     total += monthAmount;
 }
 
+/**
+ * This method compares the currentBestTotal and the total. If the total is larger than the
+ * currentBestTotal, it changes the currentBestMonth to the month.
+ */
 void calculateBestMonth(int& currentBestMonth, int& currentBestTotal, int month, int total) {
     if (total > currentBestTotal) {
         currentBestTotal = total;
@@ -59,25 +76,38 @@ void calculateBestMonth(int& currentBestMonth, int& currentBestTotal, int month,
 }
 
 int main() {
+    /**
+     * Declare the variables that we will be using.
+     */
     int month = 0;
     int monthTotal = 0;
     int totalRain = 0;
     int bestMonth = 1;
     int bestMonthTotal = 0;
+
+    /**
+     * Open the files
+     */
     ifstream inputFile;
     ofstream outputFile;
-
     inputFile.open("rainInput.txt");
     outputFile.open("rainOutput.txt");
+
+    /**
+     * Calculate the total rain and best month and print out the stats for the month.
+     */
     while (inputFile >> month >> monthTotal) {
         cout << getMonth(month) << " | " << getAsterisks(monthTotal) << " ~ " << monthTotal << " in" << endl;
         calculateTotalRain(totalRain, monthTotal);
         calculateBestMonth(bestMonth, bestMonthTotal, month, monthTotal);
     }
-
     cout << getFooter();
     cout << "The total rain amount was " << totalRain << " inches." << endl;
     cout << "The best month had " << bestMonthTotal << " inches and was " << getMonth(bestMonth);
+
+    /**
+     * Close the files.
+     */
     inputFile.close();
     outputFile.close();
     return 0;
