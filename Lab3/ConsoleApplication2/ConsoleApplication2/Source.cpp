@@ -5,9 +5,34 @@
 using namespace std;
 
 /**
+* This method takes in a month number and returns the name of that month.
+*/
+string writeMonth(int monthNumber);
+/**
+* This menthod takes in the number of inches and returns a string with 4 asterisks for
+* each inch.
+*/
+string drawBar(int inches);
+/**
+* This method returns the footer for the graph. The footer includes the scale.
+*/
+string getFooter();
+/**
+* This method takes a pointer for the total rainfall so far and adds the monthAmount to it.
+*/
+void monthlyTotal(int& total, int monthAmount);
+/**
+* This method compares the currentBestTotal and the total. If the total is larger than the
+* currentBestTotal, it changes the currentBestMonth to the month.
+*/
+void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total);
+
+
+
+/**
  * This method takes in a month number and returns the name of that month.
  */
-string getMonth(int monthNumber) {
+string writeMonth(int monthNumber) {
     switch (monthNumber) {
     case 1:
         return "January  ";
@@ -42,7 +67,7 @@ string getMonth(int monthNumber) {
  * This menthod takes in the number of inches and returns a string with 4 asterisks for
  * each inch.
  */
-string getAsterisks(int inches) {
+string drawBar(int inches) {
     string asterisks;
     for (int i = 0; i < inches; i++) {
         asterisks += "*****";
@@ -60,7 +85,7 @@ string getFooter() {
 /**
  * This method takes a pointer for the total rainfall so far and adds the monthAmount to it.
  */
-void calculateTotalRain(int& total, int monthAmount) {
+void monthlyTotal(int& total, int monthAmount) {
     total += monthAmount;
 }
 
@@ -68,7 +93,7 @@ void calculateTotalRain(int& total, int monthAmount) {
  * This method compares the currentBestTotal and the total. If the total is larger than the
  * currentBestTotal, it changes the currentBestMonth to the month.
  */
-void calculateBestMonth(int& currentBestMonth, int& currentBestTotal, int month, int total) {
+void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total) {
     if (total > currentBestTotal) {
         currentBestTotal = total;
         currentBestMonth = month;
@@ -97,13 +122,13 @@ int main() {
      * Calculate the total rain and best month and print out the stats for the month.
      */
     while (inputFile >> month >> monthTotal) {
-        cout << getMonth(month) << " | " << getAsterisks(monthTotal) << " ~ " << monthTotal << " in" << endl;
-        calculateTotalRain(totalRain, monthTotal);
-        calculateBestMonth(bestMonth, bestMonthTotal, month, monthTotal);
+        outputFile << writeMonth(month) << " | " << drawBar(monthTotal) << " ~ " << monthTotal << " in" << endl;
+        monthlyTotal(totalRain, monthTotal);
+        statistics(bestMonth, bestMonthTotal, month, monthTotal);
     }
-    cout << getFooter();
-    cout << "The total rain amount was " << totalRain << " inches." << endl;
-    cout << "The best month had " << bestMonthTotal << " inches and was " << getMonth(bestMonth);
+    outputFile << getFooter();
+    outputFile << "The total rain amount was " << totalRain << " inches." << endl;
+    outputFile << "The best month had " << bestMonthTotal << " inches and was " << writeMonth(bestMonth);
 
     /**
      * Close the files.

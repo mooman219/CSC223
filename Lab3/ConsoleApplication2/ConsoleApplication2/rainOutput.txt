@@ -1,2 +1,16 @@
-This is a line.
-This is another line.
+January   | ********************************************* ~ 9 in
+February  | **************************************** ~ 8 in
+March     | ******************** ~ 4 in
+April     | ************************* ~ 5 in
+May       | *************** ~ 3 in
+June      |  ~ 0 in
+July      | ***** ~ 1 in
+August    |  ~ 0 in
+September | ********** ~ 2 in
+October   | *************** ~ 3 in
+November  | ****************************** ~ 6 in
+December  | *********************************** ~ 7 in
+          |______________________________________________
+          | ****1****2****3****4****5****6****7****8****9
+The total rain amount was 48 inches.
+The best month had 9 inches and was January  
