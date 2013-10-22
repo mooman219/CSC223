@@ -1,27 +1,36 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+#################
+## Eclipse
+#################
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+*.pydevproject
+.project
+.metadata
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# External tool builders
+.externalToolBuilders/
 
-# Usless crap
-*.tlog
-*.opensdf
-*.sdf
-*.sln
-*.suo
-*.vcxproj
-*.filters
-*.log
-*.idb
-*.obj
-*.pdb
-*.ilk
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+#################
+## General C++ Crap
+#################
+
+*/debug/*
