@@ -27,7 +27,43 @@ void monthlyTotal(int& total, int monthAmount);
 */
 void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total);
 
+int main() {
+    /**
+     * Declare the variables that we will be using.
+     */
+    int month = 0;
+    int monthTotal = 0;
+    int totalRain = 0;
+    int bestMonth = 1;
+    int bestMonthTotal = 0;
 
+    /**
+     * Open the files
+     */
+    ifstream inputFile;
+    ofstream outputFile;
+    inputFile.open("rainInput.txt");
+    outputFile.open("rainOutput.txt");
+
+    /**
+     * Calculate the total rain and best month and print out the stats for the month.
+     */
+    while (inputFile >> month >> monthTotal) {
+        outputFile << writeMonth(month) << " | " << drawBar(monthTotal) << " ~ " << monthTotal << " in" << endl;
+        monthlyTotal(totalRain, monthTotal);
+        statistics(bestMonth, bestMonthTotal, month, monthTotal);
+    }
+    outputFile << getFooter();
+    outputFile << "The total rain amount was " << totalRain << " inches." << endl;
+    outputFile << "The best month had " << bestMonthTotal << " inches and was " << writeMonth(bestMonth);
+
+    /**
+     * Close the files.
+     */
+    inputFile.close();
+    outputFile.close();
+    return 0;
+}
 
 /**
  * This method takes in a month number and returns the name of that month.
@@ -98,42 +134,4 @@ void statistics(int& currentBestMonth, int& currentBestTotal, int month, int tot
         currentBestTotal = total;
         currentBestMonth = month;
     }
-}
-
-int main() {
-    /**
-     * Declare the variables that we will be using.
-     */
-    int month = 0;
-    int monthTotal = 0;
-    int totalRain = 0;
-    int bestMonth = 1;
-    int bestMonthTotal = 0;
-
-    /**
-     * Open the files
-     */
-    ifstream inputFile;
-    ofstream outputFile;
-    inputFile.open("rainInput.txt");
-    outputFile.open("rainOutput.txt");
-
-    /**
-     * Calculate the total rain and best month and print out the stats for the month.
-     */
-    while (inputFile >> month >> monthTotal) {
-        outputFile << writeMonth(month) << " | " << drawBar(monthTotal) << " ~ " << monthTotal << " in" << endl;
-        monthlyTotal(totalRain, monthTotal);
-        statistics(bestMonth, bestMonthTotal, month, monthTotal);
-    }
-    outputFile << getFooter();
-    outputFile << "The total rain amount was " << totalRain << " inches." << endl;
-    outputFile << "The best month had " << bestMonthTotal << " inches and was " << writeMonth(bestMonth);
-
-    /**
-     * Close the files.
-     */
-    inputFile.close();
-    outputFile.close();
-    return 0;
 }
