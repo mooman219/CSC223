@@ -40,6 +40,9 @@ int main() {
 	int years = 0;
 	int monthTotals = 0;
     int totalRain = 0;
+    int totalRainA = 0;
+    int totalRainB = 0;
+    int totalRainC = 0;
     int bestYear = 1;
     int bestYearTotal = 0;
     int x;
@@ -66,13 +69,29 @@ int main() {
 
     	monthTotal[z]=monthTotals;
 
-        outputFile << years
-        		<< writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
-        statistics(bestYear, bestYearTotal, years, monthTotals);
+        if(years==2000)
+        {
+        	totalRainA= totalRainA + monthTotal[z];
+        }
+        else if(years==2001)
+        {
+        	totalRainB= totalRainB + monthTotal[z];
+        }
+        else
+		{
+			totalRainC= totalRainC + monthTotal[z];
+		}
+
+
+        outputFile << years << writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
+        yearStatistics(bestYear, bestYearTotal, years, monthTotals);
+
         x++;
         y++;
         z++;
+
     }
+
     outputFile << getFooter();
     outputFile << "The total rain amount was " << totalRain << " inches." << endl;
     outputFile << "The best Year had " << bestYearTotal << " inches and was " << writeMonth(bestYear);
