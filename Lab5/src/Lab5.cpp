@@ -21,12 +21,12 @@ string getFooter();
 /**
 * This method takes a pointer for the total rainfall so far and adds the monthAmount to it.
 */
-void monthlyTotal(int& total, int monthAmount);
+void yearlyTotal(int& total, int yearAmount);
 /**
 * This method compares the currentBestTotal and the total. If the total is larger than the
 * currentBestTotal, it changes the currentBestMonth to the month.
 */
-void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total);
+void statistics(int& currentBestYear, int& currentBestTotal, int month, int total);
 
 int main() {
     /**
@@ -40,8 +40,8 @@ int main() {
 	int years = 0;
 	int monthTotals = 0;
     int totalRain = 0;
-    int bestMonth = 1;
-    int bestMonthTotal = 0;
+    int bestYear = 1;
+    int bestYearTotal = 0;
     int x;
     int y;
     int z;
@@ -66,15 +66,16 @@ int main() {
 
     	monthTotal[z]=monthTotals;
 
-        outputFile << years << writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
-        statistics(bestMonth, bestMonthTotal, months, monthTotals);
+        outputFile << years
+        		<< writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
+        statistics(bestYear, bestYearTotal, years, monthTotals);
         x++;
         y++;
         z++;
     }
     outputFile << getFooter();
     outputFile << "The total rain amount was " << totalRain << " inches." << endl;
-    outputFile << "The best month had " << bestMonthTotal << " inches and was " << writeMonth(bestMonth);
+    outputFile << "The best Year had " << bestYearTotal << " inches and was " << writeMonth(bestYear);
 
     /**
      * Close the files.
@@ -134,23 +135,23 @@ string drawBar(int inches) {
  * This method returns the footer for the graph. The footer includes the scale.
  */
 string getFooter() {
-    return "          |______________________________________________\n          | ****1****2****3****4****5****6****7****8****9\n";
+    return "              |______________________________________________\n              | ****1****2****3****4****5****6****7****8****9\n";
 }
 
 /**
  * This method takes a pointer for the total rainfall so far and adds the monthAmount to it.
  */
-void monthlyTotal(int& total, int monthAmount) {
-    total += monthAmount;
+void yearlyTotal(int& total, int yearAmount) {
+    total += yearAmount;
 }
 
 /**
  * This method compares the currentBestTotal and the total. If the total is larger than the
  * currentBestTotal, it changes the currentBestMonth to the month.
  */
-void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total) {
+void statistics(int& currentBestMonth, int& currentBestTotal, int theYear, int total) {
     if (total > currentBestTotal) {
         currentBestTotal = total;
-        currentBestMonth = month;
+        currentBestMonth = theYear;
     }
 }
