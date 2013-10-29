@@ -4,6 +4,7 @@
 #include <fstream>
 using namespace std;
 
+
 /**
 * This method takes in a month number and returns the name of that month.
 */
@@ -31,11 +32,19 @@ int main() {
     /**
      * Declare the variables that we will be using.
      */
-    int month = 0;
-    int monthTotal = 0;
+
+	int month[14];
+	int year[14];
+	int monthTotal[14];
+	int months = 0;
+	int years = 0;
+	int monthTotals = 0;
     int totalRain = 0;
     int bestMonth = 1;
     int bestMonthTotal = 0;
+    int x;
+    int y;
+    int z;
 
     /**
      * Open the files
@@ -45,13 +54,23 @@ int main() {
     inputFile.open("rainInput.txt");
     outputFile.open("rainOutput.txt");
 
+
     /**
      * Calculate the total rain and best month and print out the stats for the month.
      */
-    while (inputFile >> month >> monthTotal) {
-        outputFile << writeMonth(month) << " | " << drawBar(monthTotal) << " ~ " << monthTotal << " in" << endl;
-        monthlyTotal(totalRain, monthTotal);
-        statistics(bestMonth, bestMonthTotal, month, monthTotal);
+    while (inputFile >> years>> months>> monthTotals)
+    {
+    	year[x]=years;
+
+    	month[y]=months;
+
+    	monthTotal[z]=monthTotals;
+
+        outputFile << years << writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
+        statistics(bestMonth, bestMonthTotal, months, monthTotals);
+        x++;
+        y++;
+        z++;
     }
     outputFile << getFooter();
     outputFile << "The total rain amount was " << totalRain << " inches." << endl;
