@@ -26,28 +26,28 @@ void yearlyTotal(int& total, int yearAmount);
 * This method compares the currentBestTotal and the total. If the total is larger than the
 * currentBestTotal, it changes the currentBestMonth to the month.
 */
-void yearStatistics(int& currentBestYear, int& currentBestTotal, int month, int total);
+void yearStatistics(int& curretnBestYear, int& currentBestYearTotal, int year, int total);
+/**
+ * This method gives the monthly stats for the
+ */
+void monthStatistics(int (&years)[3], int& currentBestMonthYear, int& currentBestMonth, int& currentBestMonthTotal, int year, int month, int total);
 
 int main() {
     /**
      * Declare the variables that we will be using.
      */
-
-	int month[14];
-	int year[14];
-	int monthTotal[14];
-	int months = 0;
-	int years = 0;
-	int monthTotals = 0;
-    int totalRain = 0;
-    int totalRainA = 0;
-    int totalRainB = 0;
-    int totalRainC = 0;
+    int lastYear = -1;
+    int bestMonth = 0;
+    int bestMonthYear = 0;
+    int bestMonthTotal = 0;
     int bestYear = 1;
     int bestYearTotal = 0;
-    int x;
-    int y;
-    int z;
+    int maxYear = -1;
+    int yearTotal[3];
+
+    int currentYear = 0;
+    int currentMonth = 0;
+    int currentMonthTotal = 0;
 
     /**
      * Open the files
@@ -57,30 +57,27 @@ int main() {
     inputFile.open("rainInput.txt");
     outputFile.open("rainOutput.txt");
 
-
     /**
      * Calculate the total rain and best month and print out the stats for the month.
      */
-    while (inputFile >> years>> months>> monthTotals)
-    {
-    	year[x]=years;
-
-    	month[y]=months;
-
-    	monthTotal[z]=monthTotals;
-
-        outputFile << years << writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
-        yearStatistics(bestYear, bestYearTotal, years, monthTotals);
-
-        x++;
-        y++;
-        z++;
-
+    while (inputFile >> currentYear >> currentMonth >> currentMonthTotal) {
+    	if(lastYear != currentYear) {
+    		maxYear++;
+    		outputFile << currentYear << " ";
+    	} else {
+    		outputFile << "\t ";
+    	}
+    	outputFile << writeMonth(currentMonth) << " | " << drawBar(currentMonthTotal) << " ~ " << currentMonthTotal << " in" << endl;
+    	monthStatistics(yearTotal, bestMonthYear, bestMonth, bestMonthTotal, currentYear, currentMonth, currentMonthTotal);
+    	yearStatistics(bestYear, bestYearTotal, currentYear, yearTotal[maxYear]);
+    	lastYear = currentYear;
     }
-
     outputFile << getFooter();
-    outputFile << "The total rain amount was " << totalRain << " inches." << endl;
-    outputFile << "The best Year had " << bestYearTotal << " inches and was " << writeMonth(bestYear);
+    for(int index = 0; index <= maxYear; index++) {
+    	outputFile << "The total for " << index + 2000 << " was " << yearTotal[index] << "." << endl;
+    }
+    outputFile << "The best month had " << bestMonthTotal << " for the year " << bestMonthYear << " with the total rainfall of " << writeMonth(bestMonth) << endl;
+    outputFile << "The best Year of " << bestYear << " had " << bestYearTotal << " inches.";
 
     /**
      * Close the files.
@@ -140,7 +137,7 @@ string drawBar(int inches) {
  * This method returns the footer for the graph. The footer includes the scale.
  */
 string getFooter() {
-    return "              |______________________________________________\n              | ****1****2****3****4****5****6****7****8****9\n";
+    return "               |___________________________________________________\n               | ****1****2****3****4****5****6****7****8****9****10\n";
 }
 
 /**
@@ -154,9 +151,25 @@ void yearlyTotal(int& total, int yearAmount) {
  * This method compares the currentBestTotal and the total. If the total is larger than the
  * currentBestTotal, it changes the currentBestMonth to the month.
  */
-void yearStatistics(int& currentBestMonth, int& currentBestTotal, int theYear, int total) {
-    if (total > currentBestTotal) {
-        currentBestTotal = total;
-        currentBestMonth = theYear;
+void yearStatistics(int& curretnBestYear, int& currentBestYearTotal, int year, int total) {
+    if (total > currentBestYearTotal) {
+    	curretnBestYear = year;
+    	currentBestYearTotal = total;
+    }
+}
+
+/**
+ * This method compares the currentBestTotal and the total. If the total is larger than the
+ * currentBestTotal, it changes the currentBestMonth to the month.
+ */
+void monthStatistics(int (&years)[3], int& currentBestMonthYear, int& currentBestMonth, int& currentBestMonthTotal, int year, int month, int total) {
+	if(years[year - 2000] < 0) {
+		years[year - 2000] = 0;
+	}
+	years[year - 2000] += total;
+    if (total > currentBestMonthTotal) {
+        currentBestMonthTotal = total;
+        currentBestMonthYear = year;
+        currentBestMonth = month;
     }
 }
