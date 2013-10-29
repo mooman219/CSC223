@@ -26,7 +26,7 @@ void yearlyTotal(int& total, int yearAmount);
 * This method compares the currentBestTotal and the total. If the total is larger than the
 * currentBestTotal, it changes the currentBestMonth to the month.
 */
-void statistics(int& currentBestYear, int& currentBestTotal, int month, int total);
+void yearStatistics(int& currentBestYear, int& currentBestTotal, int month, int total);
 
 int main() {
     /**
@@ -149,7 +149,7 @@ void yearlyTotal(int& total, int yearAmount) {
  * This method compares the currentBestTotal and the total. If the total is larger than the
  * currentBestTotal, it changes the currentBestMonth to the month.
  */
-void statistics(int& currentBestMonth, int& currentBestTotal, int theYear, int total) {
+void yearStatistics(int& currentBestMonth, int& currentBestTotal, int theYear, int total) {
     if (total > currentBestTotal) {
         currentBestTotal = total;
         currentBestMonth = theYear;

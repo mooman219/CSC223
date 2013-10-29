@@ -25,7 +25,12 @@ void monthlyTotal(int& total, int monthAmount);
 * This method compares the currentBestTotal and the total. If the total is larger than the
 * currentBestTotal, it changes the currentBestMonth to the month.
 */
-void statistics(int& currentBestMonth, int& currentBestTotal, int month, int total);
+void yearStatistics(int& currentBestMonth, int& currentBestTotal, int month, int total)
+
+/**
+ * This method gives the monthly stats for the
+ */
+void monthstatistics(int& currentBestMonth, int& currentBestTotal, int month, int total);
 
 int main() {
     /**
