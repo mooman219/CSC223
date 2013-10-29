@@ -69,20 +69,6 @@ int main() {
 
     	monthTotal[z]=monthTotals;
 
-        if(years==2000)
-        {
-        	totalRainA= totalRainA + monthTotal[z];
-        }
-        else if(years==2001)
-        {
-        	totalRainB= totalRainB + monthTotal[z];
-        }
-        else
-		{
-			totalRainC= totalRainC + monthTotal[z];
-		}
-
-
         outputFile << years << writeMonth(month[y]) << " | " << drawBar(monthTotal[z]) << " ~ " << monthTotal[z] << " in" << endl;
         yearStatistics(bestYear, bestYearTotal, years, monthTotals);
 
