@@ -154,14 +154,21 @@ double calculateOne(char const (& currentLine)[16]) {
 char modeToPrint(char const (& currentLine)[16]) {
     switch(tolower(getWord(currentLine, 0)[0])) {
     case 'f':
-        cout.setf(cout.fixed);
+        cout << std::fixed;
         return 'f';
     case 'e':
-        cout.setf(cout.scientific);
+        cout << std::scientific;
         return 'e';
     default:
         return '?';
     }
+}
+
+void print(char const (& currentLine)[16], const double & number) {
+    for(int i = 0; currentLine[i + 1] != '\0'; i++) {
+        cout << currentLine[i];
+    }
+    cout << "    = " << number;
 }
 
 /**Pre/Post**************************************************************
@@ -180,13 +187,13 @@ int main() {
     while(inputFile.getline(currentLine, 16)) {
         switch(getTotalWords(currentLine)) {
         case 3:
-            cout << currentLine << "  == two " << calculateTwo(currentLine);
+            print(currentLine, calculateTwo(currentLine));
             break;
         case 2:
-            cout << currentLine << "  == one " << calculateOne(currentLine);
+            print(currentLine, calculateOne(currentLine));
             break;
         case 1:
-            cout << currentLine << "  == mode " << modeToPrint(currentLine);
+            cout << modeToPrint(currentLine);
             break;
         default:
             break;
