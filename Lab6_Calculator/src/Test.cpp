@@ -8,6 +8,57 @@
 
 using namespace std;
 
+/**Pre/Post**************************************************************
+ *Pre: takes in a char value from the array currentLine. Runs through If*
+ *Pre: statement and counting and tallying the word count.				*												*
+ * 																		*
+ *Post:Returns an int total word count.									*																	*
+ ***********************************************************************/
+
+int getTotalWords(char const (& currentLine)[16])
+/**Pre/Post**************************************************************
+ *Pre: Takes in a char value from the array, and also an int value for  *
+ *Pre: desired word length. Then makes a new array through the char*    *
+ *Pre: word pointer.													*
+ *																		*
+ *Post: Calculates the word number and returns a double.				*																*																		*
+ ***********************************************************************/
+
+char * getWord(char const (& currentLine)[16], int const & desiredWord)
+
+/**Pre/Post**************************************************************
+ *Pre: Will take in char value and check for what kind of operand is	*
+ *Pre: being used, then will put the operand back in PFN form.			*
+ * 																		*
+ *Post:returns an oppropriate operand for the case 						*
+ * 																		*
+ ***********************************************************************/
+double calculateTwo(char const (& currentLine)[16])
+
+/**Pre/Post**************************************************************
+ *Pre: Inputs a char value to determine the function that will be taken *
+ *Pre:  on the number in the line.										*
+ * 																		*
+ *Post: Returns a double of the number run through the trig function.	*
+ * 																		*
+ ***********************************************************************/
+double calculateOne(char const (& currentLine)[16])
+
+/**Pre/Post**************************************************************
+ *Pre: Takes in a char and processes what form to print out as, 		*
+ *Pre: fixed or scientific.												*
+ * 																		*
+ *Post: returns e ,f , or ? to be used in the main program to show 		*
+ *Post: the final letter in main. 										*
+ ***********************************************************************/
+char modeToPrint(char const (& currentLine)[16])
+
+/**Pre/Post**************************************************************
+ *Pre: takes in a char value from the array currentLine. Runs through If*
+ *Pre: statement and counting and tallying the word count.				*												*
+ * 																		*
+ *Post:Returns an int total word count.									*																	*
+ ***********************************************************************/
 int getTotalWords(char const (& currentLine)[16]) {
     int indexLine = 0;
     int totalWords = 0;
@@ -20,6 +71,13 @@ int getTotalWords(char const (& currentLine)[16]) {
     return totalWords;
 }
 
+/**Pre/Post**************************************************************
+ *Pre: Takes in a char value from the array, and also an int value for  *
+ *Pre: desired word length. Then makes a new array through the char*    *
+ *Pre: word pointer.													*
+ *																		*
+ *Post: Calculates the word number and returns a double.				*																*																		*
+ ***********************************************************************/
 char * getWord(char const (& currentLine)[16], int const & desiredWord) {
     char* word = new char[16];
     int indexLine = 0;
@@ -37,6 +95,13 @@ char * getWord(char const (& currentLine)[16], int const & desiredWord) {
     return word;
 }
 
+/**Pre/Post**************************************************************
+ *Pre: Will take in char value and check for what kind of operand is	*
+ *Pre: being used, then will put the operand back in PFN form.			*
+ * 																		*
+ *Post:returns an oppropriate operand for the case 						*
+ * 																		*
+ ***********************************************************************/
 double calculateTwo(char const (& currentLine)[16]) {
     double firstNumber = atof(getWord(currentLine, 0));
     double secondNumber = atof(getWord(currentLine, 1));
@@ -58,6 +123,13 @@ double calculateTwo(char const (& currentLine)[16]) {
     }
 }
 
+/**Pre/Post**************************************************************
+ *Pre: Inputs a char value to determine the function that will be taken *
+ *Pre:  on the number in the line.										*
+ * 																		*
+ *Post: Returns a double of the number run through the trig function.	*
+ * 																		*
+ ***********************************************************************/
 double calculateOne(char const (& currentLine)[16]) {
     double number = atof(getWord(currentLine, 0));
     switch(tolower(getWord(currentLine, 1)[0])) {
@@ -72,6 +144,13 @@ double calculateOne(char const (& currentLine)[16]) {
     }
 }
 
+/**Pre/Post**************************************************************
+ *Pre: Takes in a char and processes what form to print out as, 		*
+ *Pre: fixed or scientific.												*
+ * 																		*
+ *Post: returns e ,f , or ? to be used in the main program to show 		*
+ *Post: the final letter in main. 										*
+ ***********************************************************************/
 char modeToPrint(char const (& currentLine)[16]) {
     switch(tolower(getWord(currentLine, 0)[0])) {
     case 'f':
@@ -85,6 +164,14 @@ char modeToPrint(char const (& currentLine)[16]) {
     }
 }
 
+/**Pre/Post**************************************************************
+ * 	The main function, it takes all the info the other functions		*
+ * 	It will then print out the currentLine and following output.		*
+ *  Finally as always it will return 0 to end the program				*
+ * 																		*
+ * 																		*
+ * 																		*
+ ***********************************************************************/
 int main() {
     char currentLine[16];
     ifstream inputFile;
