@@ -15,7 +15,7 @@ using namespace std;
  *Post:Returns an int total word count.									*																	*
  ***********************************************************************/
 
-int getTotalWords(char const (& currentLine)[16])
+int getTotalWords(char const (& currentLine)[16]);
 /**Pre/Post**************************************************************
  *Pre: Takes in a char value from the array, and also an int value for  *
  *Pre: desired word length. Then makes a new array through the char*    *
@@ -24,7 +24,7 @@ int getTotalWords(char const (& currentLine)[16])
  *Post: Calculates the word number and returns a double.				*																*																		*
  ***********************************************************************/
 
-char * getWord(char const (& currentLine)[16], int const & desiredWord)
+char * getWord(char const (& currentLine)[16], int const & desiredWord);
 
 /**Pre/Post**************************************************************
  *Pre: Will take in char value and check for what kind of operand is	*
@@ -33,7 +33,7 @@ char * getWord(char const (& currentLine)[16], int const & desiredWord)
  *Post:returns an oppropriate operand for the case 						*
  * 																		*
  ***********************************************************************/
-double calculateTwo(char const (& currentLine)[16])
+double calculateTwo(char const (& currentLine)[16]);
 
 /**Pre/Post**************************************************************
  *Pre: Inputs a char value to determine the function that will be taken *
@@ -42,7 +42,7 @@ double calculateTwo(char const (& currentLine)[16])
  *Post: Returns a double of the number run through the trig function.	*
  * 																		*
  ***********************************************************************/
-double calculateOne(char const (& currentLine)[16])
+double calculateOne(char const (& currentLine)[16]);
 
 /**Pre/Post**************************************************************
  *Pre: Takes in a char and processes what form to print out as, 		*
@@ -51,7 +51,7 @@ double calculateOne(char const (& currentLine)[16])
  *Post: returns e ,f , or ? to be used in the main program to show 		*
  *Post: the final letter in main. 										*
  ***********************************************************************/
-char modeToPrint(char const (& currentLine)[16])
+char modeToPrint(char const (& currentLine)[16]);
 
 /**Pre/Post**************************************************************
  *Pre: takes in a char value from the array currentLine. Runs through If*
@@ -154,7 +154,7 @@ double calculateOne(char const (& currentLine)[16]) {
 char modeToPrint(char const (& currentLine)[16]) {
     switch(tolower(getWord(currentLine, 0)[0])) {
     case 'f':
-        cout.setf(cout.cur);
+        cout.setf(cout.fixed);
         return 'f';
     case 'e':
         cout.setf(cout.scientific);
@@ -180,13 +180,13 @@ int main() {
     while(inputFile.getline(currentLine, 16)) {
         switch(getTotalWords(currentLine)) {
         case 3:
-            cout << currentLine << "  == " << calculateTwo(currentLine);
+            cout << currentLine << "  == two " << calculateTwo(currentLine);
             break;
         case 2:
-            cout << currentLine << "  == " << calculateOne(currentLine);
+            cout << currentLine << "  == one " << calculateOne(currentLine);
             break;
         case 1:
-            cout << currentLine << "  == " << modeToPrint(currentLine);
+            cout << currentLine << "  == mode " << modeToPrint(currentLine);
             break;
         default:
             break;
