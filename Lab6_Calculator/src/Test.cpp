@@ -54,6 +54,15 @@ double calculateOne(char const (& currentLine)[16]);
 char modeToPrint(char const (& currentLine)[16]);
 
 /**Pre/Post**************************************************************
+ * Pre: Takes a char from the array and a double and puts it in a for   *
+ * loop.																*
+ * 																		*
+ * Post: Outputs the line and number in console.						*
+ ***********************************************************************/
+
+void print(char const (& currentLine)[16], const double & number);
+
+/**Pre/Post**************************************************************
  *Pre: takes in a char value from the array currentLine. Runs through If*
  *Pre: statement and counting and tallying the word count.				*												*
  * 																		*
@@ -163,6 +172,13 @@ char modeToPrint(char const (& currentLine)[16]) {
         return '?';
     }
 }
+
+/**Pre/Post**************************************************************
+ * Pre: Takes a char from the array and a double and puts it in a for   *
+ * loop.																*
+ * 																		*
+ * Post: Outputs the line and number in console.						*
+ ***********************************************************************/
 
 void print(char const (& currentLine)[16], const double & number) {
     for(int i = 0; currentLine[i + 1] != '\0'; i++) {
