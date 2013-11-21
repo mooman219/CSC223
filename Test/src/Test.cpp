@@ -2,80 +2,43 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
 
 using namespace std;
 
-enum InputType {
-    INTEGER,
-    DOUBLE,
-    ADD,
-    SUB,
-    MULT,
-    DIV,
-    MOD,
-    POW,
-    TAN,
-    SIN,
-    COS,
-    FIXED,
-    SCI,
-    ERROR
-};
-
-void modeToPrint(char mode) {
-    switch(tolower(mode)) {
-    case 'f':
-        break;
-    case 'e':
-        break;
-    default:
-        break;
-    }
-}
-
-int getTotalWords(char const (& currentLine)[16]) {
-    int indexLine = 0;
-    int totalWords = 0;
-    while(currentLine[indexLine] != '\0') {
-        if(isspace(currentLine[indexLine])) {
-            totalWords++;
-        }
-        ++indexLine;
-    }
-    return totalWords;
-}
-
-char * getWord(char const (& currentLine)[16], int const & desiredWord) {
-    char* word = new char[16];
-    int indexLine = 0;
-    int indexChar = 0;
-    int indexWord = 0;
-    while(currentLine[indexLine] != '\0') {
-        if(isspace(currentLine[indexLine])) {
-            indexWord++;
-        } else if(desiredWord == indexWord) {
-            word[indexChar] = currentLine[indexLine];
-            indexChar++;
-        }
-        ++indexLine;
-    }
-    return word;
-}
-
 int main() {
-    char currentLine[16];
-    int maxWords = 0;
-    ifstream inputFile;
-    ofstream outputFile;
-    inputFile.open("PFN.txt");
-    while(inputFile.getline(currentLine, 16)) {
-        maxWords = getTotalWords(currentLine);
-        cout << "Words: " << maxWords << endl;
-        for(int i = 0; i < maxWords; i++) {
-            cout << getWord(currentLine, i) << " | ";
-        }
-        cout << endl;
-    }
+    // Problem 5, part C
+    cout << "Problem 5, part C:" << endl;
+    int length;
+    cout << "Length: ";
+    cin >> length;
+    int y[length];
+    cout << "Size: " << sizeof(y) / sizeof(*y)  << endl;
+    // Input: "5"
+    // Output: "5"
+
+    /**
+     * Why you need "sizeof(y) / sizeof(*y)"
+     *
+     * sizeof(y) will return the total byte size of the array.
+     * sizeof(*y) will return the byte size of the element type.
+     *
+     * In the Problem 5, part C example, if you enter and input
+     * of 5, then an array of 5 ints is created.
+     *
+     * sizeof(*y) will return 4. Each int requires 4 bytes.
+     * sizeof(y) will return 20. The total size of the array is 20 bytes
+     *
+     * "sizeof(y) / sizeof(*y)" really means "TotalSize / ElementSize", which
+     * will give you the number of elements in the array.
+     */
+
+
+
+    // Problem 5, part D
+    cout << endl << "Problem 5, part D:" << endl;
+    const int size = 4;
+    int x[size - 4];
+    cout << "Size: " << sizeof(x) / sizeof(*x) << endl;
+    // Output: "Size: 0"
     return 0;
 }
