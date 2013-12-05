@@ -44,10 +44,15 @@ public:
     // mileage, owner car cost.
 
 private:
-    int numCars;                 // actual number of cars in the lot
-    Automobile CarList[CAPACITY];   // array of cars
-    void sort();                // a method to sort the automobiles in the
-                                //dealership by cost of car
+    int numCars;
+    // actual number of cars in the lot
+
+    Automobile CarList[CAPACITY];
+    // array of cars
+
+    void sort();
+    // a method to sort the automobiles in the
+    //dealership by cost of car
 };
 
 #endif /* DEALERSHIP_H_ */
