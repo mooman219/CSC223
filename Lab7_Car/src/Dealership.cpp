@@ -135,11 +135,11 @@ ostream& operator<<(ostream& out, Dealership dealer) {
         }
     }
 
-    out << endl << left << setw(12) << "ID" << setw(18) << "Make" << setw(12) << "Model" << setw(12) << "Mileage" << setw(12) << "Cost" << endl;
+    out << endl << left << setw(8) << "ID" << setw(16) << "Make" << setw(12) << "Model" << setw(8) << "Mileage" << setw(12) << "Cost" << endl;
     out << "-------------------------------------------------------------" << endl;
 
     for(int i = 0; i < numOfCars; i++) {
-        out << left << setw(12) << dealer.carList[i].getId() << setw(18) << dealer.carList[i].getMake() << setw(12) << dealer.carList[i].getModel() << setw(12) << dealer.carList[i].getMileage() << setw(12) << dealer.carList[i].getCost() << endl;
+        out << left << setw(8) << dealer.carList[i].getId() << setw(16) << dealer.carList[i].getMake() << setw(12) << dealer.carList[i].getModel() << setw(8) << dealer.carList[i].getMileage() << setw(12) << dealer.carList[i].getCost() << endl;
     }
     out << endl;
     return out;
