@@ -109,9 +109,14 @@ float Automobile::getCost() {
 /*
  * Function: operator<<()
  *
+ * Postcondition: This will print out the car's
+ *      information to the given stream.
  * Return: The cost of the automobile.
  */
 ostream& operator<<(ostream& out, Automobile automobile) {
-    out << "(" << automobile.getId() << ", " << automobile.getModel() << ", " << automobile.getMileage() << ", " << automobile.getCost() << ")";
+    out << "(" << automobile.getId() << ", " <<
+            automobile.getModel() << ", " <<
+            automobile.getMileage() << ", " <<
+            automobile.getCost() << ")";
     return out;
 }
