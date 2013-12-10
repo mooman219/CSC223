@@ -11,7 +11,96 @@
 using namespace std;
 
 /*
+ * Function: parseOption()
  *
+ * Param: menuInput - The input line from the menu.
+ * Return: The first integer in the menuInput.
+ */
+int parseOption(string &menuInput);
+
+/*
+ * Function: parseCar()
+ *
+ * Param: input - The input line to parse a car from.
+ * Param: type - The method to use to parse the car.
+ *      Valid options include:
+ *          0, When reading from a file
+ *          1, When reading all information for a car.
+ *          2, When reading just the id for a car.
+ * Return: The resulting car parsed from the input.
+ */
+Automobile parseCar(string &input, int type);
+
+/*
+ * Function: parseFile()
+ *
+ * Param: menuInput - The input line from the menu.
+ * Param: dealer - The Dealership to add the processed
+ *      cars to.
+ */
+void parseFile(string &menuInput, Dealership &dealer);
+
+/*
+ * Function: menuCall()
+ *
+ * Param: arg - The input line for the menu to read.
+ * Param: dealer - The Dealership to being modified.
+ * Param: out - The stream to write the output to.
+ */
+void menuCall(string arg, Dealership &dealer, ofstream &out);
+
+/*
+ * Function: main()
+ *
+ * This method is where the tests will take place.
+ */
+int main() {
+    ofstream out;
+    Dealership dealer = Dealership();
+
+    out.open("out.txt");
+
+    out << "Create the DataBase\n";
+    out << "-------------------------\n";
+    menuCall("1 carInput.dat", dealer, out);
+
+    out << "\n\nAdd a car\n";
+    out << "------------\n";
+    menuCall("2 56789 Mitsubishi Galant 25000 7300", dealer, out);
+    menuCall("4 56789", dealer, out);
+
+    out << "\n\nDelete a car\n";
+    out << "---------------\n";
+    menuCall("3 23456", dealer, out);
+
+    out << "\n\nDelete a car\n";
+    out << "---------------\n" << dealer;
+    menuCall("4 23456", dealer, out);
+
+    out << "\n\nRetrieve a car and print it\n";
+    out << "-------------------------------\n";
+    menuCall("4 34567", dealer, out);
+
+    out << "\n\nUpdate the car cost\n";
+    out << "------------------------\n";
+    menuCall("5 45678 90000", dealer, out);
+    menuCall("4 45678", dealer, out);
+
+    out << "\n\nPrint the DataBase in ascending order \n ";
+    out << "-----------------------\n";
+    menuCall("6", dealer, out);
+
+    out << "\n\nQuit\n";
+    out << "-------\n";
+    menuCall("7", dealer, out);
+    out.close();
+}
+
+/*
+ * Function: parseOption()
+ *
+ * Param: menuInput - The input line from the menu.
+ * Return: The first integer in the menuInput.
  */
 int parseOption(string &menuInput) {
     stringstream ss;
@@ -23,9 +112,15 @@ int parseOption(string &menuInput) {
 }
 
 /*
- * File = 0
- * Full = 1
- * ID   = 2
+ * Function: parseCar()
+ *
+ * Param: input - The input line to parse a car from.
+ * Param: type - The method to use to parse the car.
+ *      Valid options include:
+ *          0, When reading from a file
+ *          1, When reading all information for a car.
+ *          2, When reading just the id for a car.
+ * Return: The resulting car parsed from the input.
  */
 Automobile parseCar(string &input, int type) {
     stringstream ss;
@@ -62,7 +157,11 @@ Automobile parseCar(string &input, int type) {
 }
 
 /*
+ * Function: parseFile()
  *
+ * Param: menuInput - The input line from the menu.
+ * Param: dealer - The Dealership to add the processed
+ *      cars to.
  */
 void parseFile(string &menuInput, Dealership &dealer) {
     stringstream ss;
@@ -81,8 +180,12 @@ void parseFile(string &menuInput, Dealership &dealer) {
     }
 }
 
-/**
+/*
+ * Function: menuCall()
  *
+ * Param: arg - The input line for the menu to read.
+ * Param: dealer - The Dealership to being modified.
+ * Param: out - The stream to write the output to.
  */
 void menuCall(string arg, Dealership &dealer, ofstream &out) {
     stringstream ss;
@@ -133,46 +236,4 @@ void menuCall(string arg, Dealership &dealer, ofstream &out) {
         break;
     }
     cout << endl;
-}
-
-int main() {
-    ofstream out;
-    Dealership dealer = Dealership();
-
-    out.open("out.txt");
-
-    out << "Create the DataBase\n";
-    out << "-------------------------\n";
-    menuCall("1 carInput.dat", dealer, out);
-
-    out << "\n\nAdd a car\n";
-    out << "------------\n";
-    menuCall("2 56789 Mitsubishi Galant 25000 7300", dealer, out);
-    menuCall("4 56789", dealer, out);
-
-    out << "\n\nDelete a car\n";
-    out << "---------------\n";
-    menuCall("3 23456", dealer, out);
-
-    out << "\n\nDelete a car\n";
-    out << "---------------\n" << dealer;
-    menuCall("4 23456", dealer, out);
-
-    out << "\n\nRetrieve a car and print it\n";
-    out << "-------------------------------\n";
-    menuCall("4 34567", dealer, out);
-
-    out << "\n\nUpdate the car cost\n";
-    out << "------------------------\n";
-    menuCall("5 45678 90000", dealer, out);
-    menuCall("4 45678", dealer, out);
-
-    out << "\n\nPrint the DataBase in ascending order \n ";
-    out << "-----------------------\n";
-    menuCall("6", dealer, out);
-
-    out << "\n\nQuit\n";
-    out << "-------\n";
-    menuCall("7", dealer, out);
-    out.close();
 }
