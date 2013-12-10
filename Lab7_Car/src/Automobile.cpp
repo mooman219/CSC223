@@ -115,4 +115,3 @@ ostream& operator<<(ostream& out, Automobile automobile) {
     out << "(" << automobile.getId() << ", " << automobile.getModel() << ", " << automobile.getMileage() << ", " << automobile.getCost() << ")";
     return out;
 }
-

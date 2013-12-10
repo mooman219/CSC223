@@ -21,6 +21,7 @@ Dealership::Dealership(int nCar) {
 /*
  * Function:  addCar()
  *
+ * Param: aCar - The car to add.
  * Precondition: The car must have appropriate data in it
  * Postcondition:  a function to add an automobile to the list
  * If the array is full, return false, else add the car to the list and return true
@@ -41,6 +42,7 @@ bool Dealership::addCar(Automobile aCar) {
 /*
  * Function:  deleteCar()
  *
+ * Param: aCar - The car to delete.
  * Precondition: Car must have appropriate data in it
  * Postcondition:  a function to delete an automobile from the list
  * if the array is empty, or the car is not in the array return false,
@@ -72,6 +74,7 @@ bool Dealership::deleteCar(Automobile aCar) {
 /*
  * Function:  retrieveCar()
  *
+ * Param: aCar - The car to retrieve.
  * Precondition: The input parameter aCar may hold only part or all of the information about
  * the automobile, but must have the automobile id number( to be able to
  * compare it  with a car in the list)

@@ -112,7 +112,7 @@ void menuCall(string arg, Dealership &dealer, ofstream &out) {
         automobile = parseCar(arg, 2);
         if(dealer.retrieveCar(automobile)) {
             out << "Car found: " << automobile << endl;
-        } else  {
+        } else {
             out << "Car not found." << endl;
         }
         break;
@@ -163,7 +163,7 @@ int main() {
     menuCall("4 34567", dealer, out);
 
     out << "\n\nUpdate the car cost\n";
-    out << "------------------------\n";;
+    out << "------------------------\n";
     menuCall("5 45678 90000", dealer, out);
     menuCall("4 45678", dealer, out);
 
