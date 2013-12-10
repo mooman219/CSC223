@@ -8,24 +8,24 @@
 #include <math.h>
 using namespace std;
 
-// constructor to set the number of  cars to zero
+// Constructor to set the number of  cars to zero
 Dealership::Dealership() {
     numCars = 0;
 }
 
-// constructor to set the number of cars
+// Constructor to set the number of cars
 Dealership::Dealership(int nCar) {
     numCars = nCar;
 }
 
-// *********************************************************************************
-//FUNCTION: addCar()
-//
-//PRECONDITION: The car must have appropriate data in it
-//POSTCONDITION: a function to add an automobile to the list
-// If the array is full, return false, else add the car to the list and return true
-// If the car is already in the list, then replace it with aCar
-// *********************************************************************************
+/*
+ * Function:  addCar()
+ *
+ * Precondition: The car must have appropriate data in it
+ * Postcondition:  a function to add an automobile to the list
+ * If the array is full, return false, else add the car to the list and return true
+ * If the car is already in the list, then replace it with aCar
+ */
 bool Dealership::addCar(Automobile aCar) {
     bool add = false;
     if(numCars < CAPACITY) {
@@ -38,14 +38,14 @@ bool Dealership::addCar(Automobile aCar) {
     return add;
 }
 
-// *********************************************************************************
-//FUNCTION: deleteCar()
-//
-//PRECONDITION: Car must have appropriate data in it
-//POSTCONDITION: a function to delete an automobile from the list
-// if the array is empty, or the car is not in the array return false,
-// else remove the car from the list and return true
-// *********************************************************************************
+/*
+ * Function:  deleteCar()
+ *
+ * Precondition: Car must have appropriate data in it
+ * Postcondition:  a function to delete an automobile from the list
+ * if the array is empty, or the car is not in the array return false,
+ * else remove the car from the list and return true
+ */
 bool Dealership::deleteCar(Automobile aCar) {
     bool found = false;
     int carList_Id;
@@ -69,15 +69,15 @@ bool Dealership::deleteCar(Automobile aCar) {
     return found;
 }
 
-// *********************************************************************************
-//FUNCTION: retrieveCar()
-//
-//PRECONDITION: The input parameter aCar may hold only part or all of the information about
-// the automobile, but must have the automobile id number( to be able to
-// compare it  with a car in the list)
-//POSTCONDITION: a function that returns an Automobile from the list
-// The function returns true if aCar was in the list, else it returns false
-// *********************************************************************************
+/*
+ * Function:  retrieveCar()
+ *
+ * Precondition: The input parameter aCar may hold only part or all of the information about
+ * the automobile, but must have the automobile id number( to be able to
+ * compare it  with a car in the list)
+ * Postcondition:  a function that returns an Automobile from the list
+ * The function returns true if aCar was in the list, else it returns false
+ */
 bool Dealership::retrieveCar(Automobile& aCar) {
     int carList_Id = 0;
     int aCar_Id = 0;
@@ -97,14 +97,14 @@ bool Dealership::retrieveCar(Automobile& aCar) {
     return found;
 }
 
-// *********************************************************************************
-//FUNCTION: totalInvestment()
-//
-//PRECONDITION: Cars must have appropriate data in them and carry
-// a cost
-//POSTCONDITION: a function that returns the total cost that
-// the dealership invested in cars
-// *********************************************************************************
+/*
+ * Function:  totalInvestment()
+ *
+ * Precondition: Cars must have appropriate data in them and carry
+ * a cost
+ * Postcondition:  a function that returns the total cost that
+ * the dealership invested in cars
+ */
 double Dealership::totalInvestment() {
     double totalCost = 0;
     for(int i = 0; i < numCars; i++) {
@@ -113,16 +113,16 @@ double Dealership::totalInvestment() {
     return totalCost;
 }
 
-// *********************************************************************************
-//FUNCTION: operator<<()
-//
-//PRECONDITION: Cars must have appropriate data in them
-//POSTCONDITION: overload the << operator a function to print
-// all the cars in the Dealership in ascending order by
-// cost of  the car*(calls the sort function).
-// For each car print the Car ID number,
-// car model,  Car make, mileage, owner car cost.
-// *********************************************************************************
+/*
+ * Function:  operator<<()
+ *
+ * Precondition: Cars must have appropriate data in them
+ * Postcondition:  overload the << operator a function to print
+ * all the cars in the Dealership in ascending order by
+ * cost of  the car*(calls the sort function).
+ * For each car print the Car ID number,
+ * car model,  Car make, mileage, owner car cost.
+ */
 ostream& operator<<(ostream& out, Dealership dealer) {
     dealer.sort();
     int numOfCars = 0;
@@ -142,14 +142,14 @@ ostream& operator<<(ostream& out, Dealership dealer) {
     return out;
 }
 
-// *********************************************************************************
-//FUNCTION: sort()
-//
-//PRECONDITION: There must be cars in the list with a cost appended to
-// them
-//POSTCONDITION: a function that sorts the List of cars in ascending
-// order by Cost
-// *********************************************************************************
+/*
+ * Function:  sort()
+ *
+ * Precondition: There must be cars in the list with a cost appended to
+ * them
+ * Postcondition:  a function that sorts the List of cars in ascending
+ * order by Cost
+ */
 void Dealership::sort() {
     double min = 0;
     int minIndex = 0;

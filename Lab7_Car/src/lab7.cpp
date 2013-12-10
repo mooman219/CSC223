@@ -81,38 +81,42 @@ void parseFile(string &menuInput, Dealership &dealer) {
     }
 }
 
-void menuCall(string arg, Dealership &dealer) {
+/**
+ *
+ */
+void menuCall(string arg, Dealership &dealer, ofstream &out) {
     stringstream ss;
     Automobile automobile;
+    out << "Input: " << arg << endl;
     switch(parseOption(arg)) {
-    case 1: //get from file
+    case 1: // Read from file
         parseFile(arg, dealer);
         break;
-    case 2: //add a car
+    case 2: // Add a car
         automobile = parseCar(arg, 1);
         if(!dealer.addCar(automobile)) {
-            cout << "Car id already taken: " << automobile << endl;
+            out << "Car id already taken: " << automobile << endl;
         } else {
-            cout << "Car added: " << automobile << endl;
+            out << "Car added: " << automobile << endl;
         }
         break;
-    case 3: //delete a car
+    case 3: // Delete a car
         automobile = parseCar(arg, 2);
         if(dealer.deleteCar(automobile)) {
-            cout << "Car deleted: " << automobile << endl;
+            out << "Car deleted: " << automobile << endl;
         } else {
-            cout << "Car not deleted." << endl;
+            out << "Car not deleted." << endl;
         }
         break;
-    case 4: //retrieve a car and print
+    case 4: // Retrieve a car and print
         automobile = parseCar(arg, 2);
         if(dealer.retrieveCar(automobile)) {
-            cout << "Car found: " << automobile << endl;
+            out << "Car found: " << automobile << endl;
         } else  {
-            cout << "Car not found." << endl;
+            out << "Car not found." << endl;
         }
         break;
-    case 5: //update a car
+    case 5: // Update a car
         ss << arg;
         int option, id, cost;
         ss >> option >> id >> cost;
@@ -122,10 +126,10 @@ void menuCall(string arg, Dealership &dealer) {
         automobile.setCost(cost);
         dealer.addCar(automobile);
         break;
-    case 6: //print in ascending
-        cout << dealer;
+    case 6: // Print in assending order
+        out << dealer;
         break;
-    case 7: //quit
+    case 7: // Exit
         break;
     }
     cout << endl;
@@ -139,42 +143,36 @@ int main() {
 
     out << "Create the DataBase\n";
     out << "-------------------------\n";
-    out << endl;
-    menuCall("1 carInput.dat", dealer);
+    menuCall("1 carInput.dat", dealer, out);
 
-    out << "add a car\n";
+    out << "\n\nAdd a car\n";
     out << "------------\n";
-    out << endl;
-    menuCall("2 56789 Mitsubishi Galant 25000 7300", dealer);
-    menuCall("4 56789", dealer);
+    menuCall("2 56789 Mitsubishi Galant 25000 7300", dealer, out);
+    menuCall("4 56789", dealer, out);
 
-    out << "delete a car\n";
+    out << "\n\nDelete a car\n";
     out << "---------------\n";
-    out << endl;
-    menuCall("3 23456", dealer);
+    menuCall("3 23456", dealer, out);
 
-    out << "delete a car\n";
+    out << "\n\nDelete a car\n";
     out << "---------------\n" << dealer;
-    out << endl;
-    menuCall("4 23456", dealer);
-    out << "retrieve a car and print it\n";
+    menuCall("4 23456", dealer, out);
+
+    out << "\n\nRetrieve a car and print it\n";
     out << "-------------------------------\n";
-    out << endl;
-    menuCall("4 34567", dealer);
+    menuCall("4 34567", dealer, out);
 
-    out << " update the car cost\n";
-    out << "------------------------\n";
-    out << endl;
-    menuCall("5 45678 90000", dealer);
-    menuCall("4 45678", dealer);
+    out << "\n\nUpdate the car cost\n";
+    out << "------------------------\n";;
+    menuCall("5 45678 90000", dealer, out);
+    menuCall("4 45678", dealer, out);
 
-    out << "Print the DataBase in ascending order \n ";
+    out << "\n\nPrint the DataBase in ascending order \n ";
     out << "-----------------------\n";
-    out << endl;
-    menuCall("6", dealer);
-    out << "quit\n";
-    out << "------- \n";
-    out << endl;
-    menuCall("7", dealer);
+    menuCall("6", dealer, out);
+
+    out << "\n\nQuit\n";
+    out << "-------\n";
+    menuCall("7", dealer, out);
     out.close();
 }

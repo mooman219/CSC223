@@ -1,14 +1,24 @@
 Create the DataBase
------------------------- - 
+-------------------------
+Input: 1 carInput.dat
 
-add a car
+
+Add a car
 ------------
+Input: 2 56789 Mitsubishi Galant 25000 7300
+Car added: (56789, Galant, 25000, 7300)
+Input: 4 56789
+Car found: (56789, Galant, 25000, 7300)
 
-delete a car
--------------- - 
 
-delete a car
--------------- - 
+Delete a car
+---------------
+Input: 3 23456
+Car deleted: (23456, , 0, 0)
+
+
+Delete a car
+---------------
 ------------------------------------------------------------------------------
 ID Number   Make              Model       Mileage     Cost        
 ------------------------------------------------------------------------------
@@ -16,16 +26,35 @@ ID Number   Make              Model       Mileage     Cost
 34567       Ford              Taurus      55000       5500        
 56789       Mitsubishi        Galant      25000       7300        
 12345       Nissan            Maxima      35379       7400        
+Input: 4 23456
+Car not found.
 
-retrieve a car and print it
------------------------------- - 
 
- update the car cost
+Retrieve a car and print it
+-------------------------------
+Input: 4 34567
+Car found: (34567, Taurus, 55000, 5500)
+
+
+Update the car cost
 ------------------------
+Input: 5 45678 90000
+Input: 4 45678
+Car found: (45678, Grandprix, 60000, 90000)
+
 
 Print the DataBase in ascending order 
- ---------------------- - 
+ -----------------------
+Input: 6
+------------------------------------------------------------------------------
+ID Number   Make              Model       Mileage     Cost        
+------------------------------------------------------------------------------
+34567       Ford              Taurus      55000       5500        
+56789       Mitsubishi        Galant      25000       7300        
+12345       Nissan            Maxima      35379       7400        
+45678       Pontiac           Grandprix   60000       90000       
 
-quit
------- - 
 
+Quit
+-------
+Input: 7
