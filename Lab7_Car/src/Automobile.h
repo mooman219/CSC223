@@ -1,29 +1,32 @@
-#ifndef AUTOMOBILE_H_
-#define AUTOMOBILE_H_
-#include <string>
+#ifndef AUTOMOBILE_H
+#define AUTOMOBILE_H
 
+#include <cstring>
+#include <iostream>
+#include <sstream>
 using namespace std;
 
-class Automobile {
-public:
-    Automobile(string &mId, string &mMake, string &mModel, int &mMileage, float &mCost);
-    virtual ~Automobile();
-    void setId(string argId);
-    void setMake(string argMake);
-    void setModel(string argModel);
-    void setMileage(int argMileage);
-    void setCost(float argCost);
-    string getId();
-    string getMake();
-    string getModel();
-    int getMileage();
-    float getCost();
-private:
-    string mId;
-    string mMake;
-    string mModel;
-    int mMileage;
-    float mCost;
+class Automobile
+{
+	public:
+        Automobile();
+		void setId(int argId);
+		void setMake(string make);
+		void setModel(string model);
+		void setMileage(int argMileage);
+		void setCost(float argCost);
+		int getId();
+		string getMake();
+		string getModel();
+		int getMileage();
+		float getCost();
+		friend ostream& operator<<(ostream& out, Automobile automobile);
+    private:
+		int id;
+		string make;
+		string model;
+		int mileage;
+		float cost;
 };
 
-#endif /* AUTOMOBILE_H_ */
+#endif

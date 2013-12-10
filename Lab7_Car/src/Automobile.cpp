@@ -1,57 +1,54 @@
 #include "Automobile.h"
 
-Automobile::Automobile(string &mId, string &mMake, string &mModel, int &mMileage, float &mCost) {
-    this->mId = mId;
-    this->mMake = mMake;
-    this->mModel = mModel;
-    this->mMileage = mMileage;
-    this->mCost = mCost;
+Automobile::Automobile() {
+    this->cost = 0;
+    this->id = 0;
+    this->mileage = 0;
+    this->make = "";
+    this->model = "";
 }
 
-Automobile::~Automobile() {
-    delete &mId;
-    delete &mMake;
-    delete &mModel;
-    delete &mMileage;
-    delete &mCost;
+void Automobile::setId(int argId) {
+    id = argId;
 }
 
-void Automobile::setId(string argId) {
-    this->mId = argId;
+ostream& operator<<(ostream& out, Automobile automobile) {
+    out << "(" << automobile.getId() << ", " << automobile.getModel() << ", " << automobile.getMileage() << ", " << automobile.getCost() << ")";
+    return out;
 }
 
-void Automobile::setMake(string argMake) {
-    this->mMake = argMake;
+void Automobile::setMake(string make) {
+    this->make = make;
 }
 
-void Automobile::setModel(string argModel) {
-    this->mModel = argModel;
+void Automobile::setModel(string model) {
+    this->model = model;
 }
 
-void Automobile::setMileage(int argMileage) {
-    this->mMileage = argMileage;
+void Automobile::setMileage(int mileage) {
+    this->mileage = mileage;
 }
 
-void Automobile::setCost(float argCost) {
-    this->mCost = argCost;
+void Automobile::setCost(float cost) {
+    this->cost = cost;
 }
 
-string Automobile::getId() {
-    return this->mId;
+int Automobile::getId() {
+    return id;
 }
 
 string Automobile::getMake() {
-    return this->mMake;
+    return make;
 }
 
 string Automobile::getModel() {
-    return this->mModel;
+    return model;
 }
 
 int Automobile::getMileage() {
-    return this->mMileage;
+    return mileage;
 }
 
 float Automobile::getCost() {
-    return this->mCost;
+    return cost;
 }

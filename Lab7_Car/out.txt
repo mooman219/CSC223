@@ -1,0 +1,31 @@
+Create the DataBase
+------------------------ - 
+
+add a car
+------------
+
+delete a car
+-------------- - 
+
+delete a car
+-------------- - 
+------------------------------------------------------------------------------
+ID Number   Make              Model       Mileage     Cost        
+------------------------------------------------------------------------------
+45678       Pontiac           Grandprix   60000       5000        
+34567       Ford              Taurus      55000       5500        
+56789       Mitsubishi        Galant      25000       7300        
+12345       Nissan            Maxima      35379       7400        
+
+retrieve a car and print it
+------------------------------ - 
+
+ update the car cost
+------------------------
+
+Print the DataBase in ascending order 
+ ---------------------- - 
+
+quit
+------ - 
+

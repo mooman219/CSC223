@@ -1,16 +1,19 @@
-#ifndef DEALERSHIP_H_
-#define DEALERSHIP_H_
-#include "Automobile.h"
-#include <ostream>
+#ifndef DEALERSHIP_H
+#define DEALERSHIP_H
 
+#include "Automobile.h"
+#include <iostream>
 using namespace std;
 
 const int CAPACITY = 30;
+
 class Dealership {
 public:
     Dealership();
     // constructor to set the number of  cars to zero
-    ~Dealership();
+
+    Dealership(int size);
+    // constructor to set the number of  cars to zero
 
     bool addCar(Automobile aCar);
     // a function to add an automobile to the list
@@ -32,12 +35,12 @@ public:
     double totalInvestment();
     // a function that returns the total cost that the dealership invested in cars
 
-    //print the dealership
     void printDealership();
+    //print the dealership
     // For each car print the Car ID number, car model,  Car
     // mileage, owner car cost.
 
-    friend ostream& operator<<(ostream& os, const Dealership& obj);
+    friend ostream& operator<<(ostream& out, Dealership dealer);
     // overload the << operator a function to print all the cars in the Dealership in
     // ascending order by cost of  the car*.
     // For each car print the Car ID number, car model,  Car
@@ -47,12 +50,12 @@ private:
     int numCars;
     // actual number of cars in the lot
 
-    Automobile CarList[CAPACITY];
+    Automobile carList[CAPACITY];
     // array of cars
 
     void sort();
-    // a method to sort the automobiles in the
+    //a method to sort the automobiles in the
     //dealership by cost of car
 };
 
-#endif /* DEALERSHIP_H_ */
+#endif
