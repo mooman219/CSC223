@@ -135,13 +135,13 @@ ostream& operator<<(ostream& out, Dealership dealer) {
         }
     }
 
-    out << "------------------------------------------------------------------------------" << endl;
-    out << left << setw(12) << "ID Number" << setw(18) << "Make" << setw(12) << "Model" << setw(12) << "Mileage" << setw(12) << "Cost" << endl;
-    out << "------------------------------------------------------------------------------" << endl;
+    out << endl << left << setw(12) << "ID" << setw(18) << "Make" << setw(12) << "Model" << setw(12) << "Mileage" << setw(12) << "Cost" << endl;
+    out << "-------------------------------------------------------------" << endl;
 
     for(int i = 0; i < numOfCars; i++) {
         out << left << setw(12) << dealer.carList[i].getId() << setw(18) << dealer.carList[i].getMake() << setw(12) << dealer.carList[i].getModel() << setw(12) << dealer.carList[i].getMileage() << setw(12) << dealer.carList[i].getCost() << endl;
     }
+    out << endl;
     return out;
 }
 
@@ -154,28 +154,14 @@ ostream& operator<<(ostream& out, Dealership dealer) {
  * order by Cost
  */
 void Dealership::sort() {
-    double min = 0;
-    int minIndex = 0;
-    int length = numCars;
-    Automobile tmp[CAPACITY];
-    if(numCars != 0) {
-        for(int j = 0; j < numCars; j++) {
-            min = carList[length - 1].getCost();
-            for(int i = 0; i < length; i++) {
-                if(carList[i].getCost() <= min) {
-                    min = carList[i].getCost();
-                    minIndex = i;
+    Automobile temp;
+    for(int i = 0; i < this->numCars; i++) {
+            for(int j = 0; j < this->numCars - i - 1; j++) {
+                if(carList[j].getId() != 0 && carList[j].getId() > carList[j + 1].getId()) {
+                    temp = carList[j];
+                    carList[j] = carList[j + 1];
+                    carList[j + 1] = temp;
                 }
-            }
-            length--;
-            tmp[j] = carList[minIndex];
-            for(int k = minIndex; k < CAPACITY - 1; k++) {
-                carList[k] = carList[k + 1];
-            }
-            minIndex = 0;
-        }
-        for(int l = 0; l < numCars; l++) {
-            carList[l] = tmp[l];
         }
     }
 }

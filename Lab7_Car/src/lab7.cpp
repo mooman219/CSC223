@@ -61,37 +61,37 @@ int main() {
     out.open("out.txt");
 
     out << "Create the DataBase\n";
-    out << "-------------------------\n";
+    out << "---------------------------------------------\n";
     menuCall("1 carInput.dat", dealer, out);
 
     out << "\n\nAdd a car\n";
-    out << "------------\n";
+    out << "---------------------------------------------\n";
     menuCall("2 56789 Mitsubishi Galant 25000 7300", dealer, out);
     menuCall("4 56789", dealer, out);
 
     out << "\n\nDelete a car\n";
-    out << "---------------\n";
+    out << "---------------------------------------------\n";
     menuCall("3 23456", dealer, out);
 
-    out << "\n\nDelete a car\n";
-    out << "---------------\n" << dealer;
+    out << "\n\nRetrieve a car\n";
+    out << "---------------------------------------------\n";
     menuCall("4 23456", dealer, out);
 
     out << "\n\nRetrieve a car and print it\n";
-    out << "-------------------------------\n";
+    out << "---------------------------------------------\n";
     menuCall("4 34567", dealer, out);
 
     out << "\n\nUpdate the car cost\n";
-    out << "------------------------\n";
+    out << "---------------------------------------------\n";
     menuCall("5 45678 90000", dealer, out);
     menuCall("4 45678", dealer, out);
 
-    out << "\n\nPrint the DataBase in ascending order \n ";
-    out << "-----------------------\n";
+    out << "\n\nPrint the DataBase in ascending order\n";
+    out << "---------------------------------------------\n";
     menuCall("6", dealer, out);
 
     out << "\n\nQuit\n";
-    out << "-------\n";
+    out << "---------------------------------------------\n";
     menuCall("7", dealer, out);
     out.close();
 }
@@ -224,10 +224,14 @@ void menuCall(string arg, Dealership &dealer, ofstream &out) {
         int option, id, cost;
         ss >> option >> id >> cost;
         automobile.setId(id);
-        dealer.retrieveCar(automobile);
-        dealer.deleteCar(automobile);
-        automobile.setCost(cost);
-        dealer.addCar(automobile);
+        if(dealer.retrieveCar(automobile)) {
+            dealer.deleteCar(automobile);
+            automobile.setCost(cost);
+            dealer.addCar(automobile);
+            out << "Car Updated: " << automobile << endl;
+        } else {
+            out << "Car not found." << endl;
+        }
         break;
     case 6: // Print in assending order
         out << dealer;
