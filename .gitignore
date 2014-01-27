@@ -1,36 +1,32 @@
-#################
-## Eclipse
-#################
+############
+# NetBeans specific
+############
 
-*.pydevproject
-.project
-.metadata
-bin/
-tmp/
-target/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
+*/nbproject/
+*/nbbuild/
+*/build/
+*/dist/
+*/nbdist/
+manifest.mf
+build.xml
+nbbuild.xml
+nbactions.xml
+nb-configuration.xml
+.dep.inc
 
-# External tool builders
-.externalToolBuilders/
 
-# Locally stored "Eclipse launch configurations"
-*.launch
+############
+## Windows
+############
 
-# CDT-specific
-.cproject
+# Windows image file caches
+Thumbs.db
 
-# PDT-specific
-.buildpath
+# Folder config file
+Desktop.ini
 
-#################
-## General C++ Crap
-#################
+############
+## Mac
+############
 
-*/debug/*
+*.DS_STORE
